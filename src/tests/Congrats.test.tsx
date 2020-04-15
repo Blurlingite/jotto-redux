@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { findByTestAttr, checkProps } from "../test/testUtils";
+import { findByTestAttr } from "../test/testUtils";
 import Congrats from "../components/Congrats";
 
 const defaultProps = { success: false };
@@ -33,7 +33,8 @@ test("renders non-empty congrats message when 'success' prop is true", () => {
   // we expect to have text when success is true, so make sure the length of text is not 0
   expect(message.text().length).not.toBe(0);
 });
-test("does not throw warning with expected props", () => {
-  // const expectedProps = { success: false };
-  checkProps(Congrats, defaultProps);
-});
+// don't need to check proptypes when using Typescript & interfaces
+// test("does not throw warning with expected props", () => {
+//   // const expectedProps = { success: false };
+//   checkProps(Congrats, defaultProps);
+// });

@@ -7,7 +7,11 @@ import PropTypes from "prop-types";
  * @param {object} props - React props.
  * @returns {JSX.Element} - Rendered component (or null if 'success prop is false)
  */
-const Congrats = (props) => {
+
+interface ComponentProps {
+  success: boolean;
+}
+const Congrats = (props: ComponentProps) => {
   if (props.success) {
     return (
       <div data-test="component-congrats">
