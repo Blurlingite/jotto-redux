@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-class Input extends Component {
+interface ComponentProps {
+  success: boolean;
+}
+class Input extends Component<ComponentProps, any> {
   render() {
     const contents = this.props.success ? null : (
       <form className="form-inline">
