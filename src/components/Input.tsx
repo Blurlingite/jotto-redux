@@ -3,8 +3,10 @@ import { connect } from "react-redux";
 
 interface ComponentProps {
   success: boolean;
+  store: any;
 }
-class Input extends Component<ComponentProps, any> {
+
+class Input extends Component<ComponentProps> {
   render() {
     const contents = this.props.success ? null : (
       <form className="form-inline">
@@ -28,7 +30,7 @@ class Input extends Component<ComponentProps, any> {
 }
 
 const mapStateToProps = ({ success }: { success: boolean }) => {
-  return { success };
+  return { success, store: {} };
 };
 
 export default connect(mapStateToProps)(Input);

@@ -1,7 +1,7 @@
 import { ShallowWrapper } from "enzyme";
+import { createStore, applyMiddleware } from "redux";
 import rootReducer from "../reducers";
-import { createStore } from "redux";
-
+import { middlewares } from "../configureStore";
 // import checkPropTypes from "check-prop-types";
 
 /**
@@ -16,7 +16,11 @@ export const findByTestAttr = (wrapper: ShallowWrapper, val: string) => {
 
 // make a redux store for test files
 export const storeFactory = (initialState: any) => {
-  return createStore(rootReducer, initialState);
+  const createStoreWithMiddlewares = applyMiddleware(...middlewares)(
+    createStore
+  );
+
+  return createStoreWithMiddlewares(rootReducer, initialState);
 };
 
 // don't need to check proptypes when using Typescript & interfaces
