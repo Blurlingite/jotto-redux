@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
+import { guessWord } from "../actions";
 interface ComponentProps {
   success: boolean;
-  store: any;
+  // store: any;
 }
 
 class Input extends Component<ComponentProps> {
@@ -33,4 +33,4 @@ const mapStateToProps = ({ success }: { success: boolean }) => {
   return { success, store: {} };
 };
 
-export default connect(mapStateToProps)(Input);
+export default connect(mapStateToProps, { guessWord })(Input);

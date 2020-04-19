@@ -1,12 +1,21 @@
 import axios from "axios";
 
 import { getLetterMatchCount } from "../helpers";
+import { ThunkDispatch } from "redux-thunk";
 
 export const actionTypes = {
   CORRECT_GUESS: "CORRECT_GUESS",
   GUESS_WORD: "GUESS_WORD",
   SET_SECRET_WORD: "SET_SECRET_WORD",
 };
+
+type guessedWordType = { guessedWord: string; letterMatchCount: number };
+
+interface AppState {
+  secretWord: string;
+  success: boolean;
+  guessedWords: guessedWordType[];
+}
 
 /**
  * @function guessWord
@@ -17,7 +26,13 @@ export const actionTypes = {
 export const guessWord = (guessedWord: string) => {
   // this is possible b/c of Redux Thunk middleware
   // It lets us dispatch more than 1 action at once by returning a function
-  return function (dispatch: any, getState: any) {
+  // it may be fine to leave dispatch's type as any, since it's Redux Thunk's function & not one I made: https://github.com/reduxjs/redux-thunk/blob/master/test/typescript.ts
+  // For Redux Thunk's getState(), you just need a function that uses your defined state, so be sure
+  // to use '() =>' before your state
+  return function (
+    dispatch: ThunkDispatch<AppState, undefined, any>,
+    getState: () => AppState
+  ) {
     const secretWord = getState().secretWord;
     const letterMatchCount = getLetterMatchCount(guessedWord, secretWord);
 

@@ -1,6 +1,8 @@
 import { actionTypes } from "../actions";
 
-export default (state: any = [], action: any) => {
+type guessedWordType = { guessedWord: string; letterMatchCount: number };
+
+export default (state: guessedWordType[] = [], action: any) => {
   switch (action.type) {
     case actionTypes.GUESS_WORD:
       return [...state, action.guessedWord];
@@ -8,3 +10,12 @@ export default (state: any = [], action: any) => {
       return state;
   }
 };
+
+// export default (state: any = [], action: any) => {
+//   switch (action.type) {
+//     case actionTypes.GUESS_WORD:
+//       return [...state, action.guessedWord];
+//     default:
+//       return state;
+//   }
+// };

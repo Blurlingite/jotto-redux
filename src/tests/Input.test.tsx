@@ -62,4 +62,25 @@ describe("render", () => {
   });
 });
 
-describe("update state", () => {});
+describe("redux props", () => {
+  test("has success piece of state as prop", () => {
+    const success = true;
+    const wrapper = setup({ success }) as any; // marked 'as any' b/c Typescript can't work with Enzyme's instance(), so I'll get an error about 'success' property not existing
+    // get the props from the instance of the component, and then get the success piece of state
+    // the success piece of state is in the props
+    // const wrapper = shallow(<Input {...props} />);
+    const successProp = wrapper.instance().props.success;
+    expect(successProp).toBe(success);
+  });
+
+  // can't compare guessWord prop with guessWord function b/c comparing functions doesn't work, so we'll
+  // just test that the guessWord action creator is there and is a function
+  test("`guessWord` action creator is a function prop", () => {
+    const wrapper = setup() as any; // marked 'as any' b/c Typescript can't work with Enzyme's instance(), so I'll get an error about 'success' property not existing
+    // get the action creator
+    const guessWordProp = wrapper.instance().props.guessWord;
+    // when this 'expect' runs, it will look at your component's constructor. So if that guessWord action
+    // creator isn't there (either in a constructor or the connect() function), you'll get an undefined error
+    expect(guessWordProp).toBeInstanceOf(Function);
+  });
+});

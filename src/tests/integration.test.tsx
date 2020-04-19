@@ -1,6 +1,5 @@
 import { storeFactory } from "../test/testUtils";
 import { guessWord } from "../actions";
-import { getLetterMatchCount } from "../helpers";
 
 describe("guessWord action dispatcher", () => {
   const secretWord = "party";
