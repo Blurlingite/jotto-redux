@@ -1,8 +1,11 @@
+import axios from "axios";
+
 import { getLetterMatchCount } from "../helpers";
 
 export const actionTypes = {
   CORRECT_GUESS: "CORRECT_GUESS",
   GUESS_WORD: "GUESS_WORD",
+  SET_SECRET_WORD: "SET_SECRET_WORD",
 };
 
 /**
@@ -31,5 +34,22 @@ export const guessWord = (guessedWord: string) => {
         type: actionTypes.CORRECT_GUESS,
       });
     }
+  };
+};
+
+export const getSecretWord = () => {
+  return (dispatch: any) => {
+    // make sure to put a return before the axios call in this case so
+    // that this function doesn't complete before the asynchroncity is complete
+
+    // the 'response' variable in .then() is being declared for the first time there, so you
+    // can name it what you like. Whatever you name it, the response that axios gets will
+    // be what the 'response' variable equals
+    return axios.get("http://localhost:3030").then((response) => {
+      dispatch({
+        type: actionTypes.SET_SECRET_WORD,
+        secretWord: response.data, // axios stores the stuff from the response (in this case the secretWord) in .data of the response object
+      });
+    });
   };
 };
