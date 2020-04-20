@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { guessWord } from "../actions";
+import { threadId } from "worker_threads";
 interface ComponentProps {
   success: boolean;
   guessWord: (word: string) => {};
@@ -24,6 +25,7 @@ export class Input extends Component<ComponentProps, LocalState> {
     if (guessedWord && guessedWord.length > 0) {
       this.props.guessWord(guessedWord);
     }
+    this.setState({ currentGuess: "" });
   }
   render() {
     const contents = this.props.success ? null : (

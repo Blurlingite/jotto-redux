@@ -85,43 +85,6 @@ describe("redux props", () => {
   });
 });
 
-// describe("guessWord action creator call", () => {
-//   let guessWordMock: any;
-//   let wrapper: any;
-//   const guessedWord = "train";
-//   beforeEach(() => {
-//     guessWordMock = jest.fn();
-
-//     const props = {
-//       guessWord: guessWordMock,
-//       success: false,
-//     };
-//     wrapper = shallow(<Input {...props} />);
-
-//     // add value to Input box (equivalent of entering a word into the box) by setting state of shallow wrapper, this is not the same as the component state b/c you can put whatever kind of data you want
-//     wrapper.setState({ correctGuess: guessedWord });
-//     const submitButton = findByTestAttr(wrapper, "submit-button");
-
-//     // simulate button click
-//     submitButton.simulate("click", { preventDefault() {} });
-//   });
-//   test("guessWord is called once", () => {
-//     // check to see if mock ran
-//     const guessWordCallCount = guessWordMock.mock.calls.length;
-//     expect(guessWordCallCount).toBe(1);
-//   });
-
-//   test("calls guessWord with input value as argument", () => {
-//     // if you console.log() the "guessWordMock.mock.calls" you can find out more info about the calls
-//     // you'll see that it's an array of arrays with each array representing a call from first to last
-//     // So if you called your mock function 2 times with different arguments, in the case of guessWord let's say it's "train" & "party",
-//     // It looks like this [["train"],["party"]]
-//     // If you had 2 arguments per call ("train" 3 & "party" 5), it will look like this [["train,3"],[party,5]]
-//     // So we can get the word from the input's state by first accessing the first element of the array of arrays, and then accessing that particular array's 1st element like this: [0][0]
-//     const guessedWordArg = guessWordMock.mock.calls[0][0];
-//     expect(guessedWordArg).toBe(guessedWord);
-//   });
-// });
 describe("`guessWord` action creator", () => {
   let guessWordMock: any;
   let wrapper: any;
@@ -137,7 +100,7 @@ describe("`guessWord` action creator", () => {
     // set up Input, with guessWordMock as a prop
     wrapper = shallow(<Input {...props} />);
 
-    // add value to input box
+    // add value to Input box (equivalent of entering a word into the box) by setting state of shallow wrapper, this is not the same as the component state b/c you can put whatever kind of data you want
     wrapper.setState({ currentGuess: guessedWord });
 
     // simulate click on submit button
@@ -149,7 +112,19 @@ describe("`guessWord` action creator", () => {
     expect(guessWordCallCount).toBe(1);
   });
   test("calls `guessWord with input value as argument`", () => {
+    // if you console.log() the "guessWordMock.mock.calls" you can find out more info about the calls
+    // you'll see that it's an array of arrays with each array representing a call from first to last
+    // So if you called your mock function 2 times with different arguments, in the case of guessWord let's say it's "train" & "party",
+    // It looks like this [["train"],["party"]]
+    // If you had 2 arguments per call ("train" 3 & "party" 5), it will look like this [["train,3"],[party,5]]
+    // So we can get the word from the input's state by first accessing the first element of the array of arrays, and then accessing that particular array's 1st element like this: [0][0]
     const guessWordArg = guessWordMock.mock.calls[0][0];
     expect(guessWordArg).toBe(guessedWord);
+  });
+
+  test("`input box clears on submit", () => {
+    // the current guess in the input box should be an empty string after submitting (meaning it's empty)
+    // we have a field called 'currentGuess' in the state. We can access it by passing it in as a string
+    expect(wrapper.state("currentGuess")).toBe("");
   });
 });
