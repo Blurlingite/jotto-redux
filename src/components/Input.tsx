@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { guessWord } from "../actions";
-import { threadId } from "worker_threads";
+
 interface ComponentProps {
   success: boolean;
   guessWord: (word: string) => {};
@@ -54,7 +54,9 @@ export class Input extends Component<ComponentProps, LocalState> {
 
 const mapStateToProps = (
   { success }: { success: boolean },
-  guessWord: (word: string) => {}
+  guessWord: any
+
+  // guessWord: (word: string) => {}
 ) => {
   return { success, guessWord, store: {} };
 };

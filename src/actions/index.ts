@@ -2,6 +2,7 @@ import axios from "axios";
 
 import { getLetterMatchCount } from "../helpers";
 import { ThunkDispatch } from "redux-thunk";
+import { AppState } from "../App";
 
 export const actionTypes = {
   CORRECT_GUESS: "CORRECT_GUESS",
@@ -9,13 +10,13 @@ export const actionTypes = {
   SET_SECRET_WORD: "SET_SECRET_WORD",
 };
 
-type guessedWordType = { guessedWord: string; letterMatchCount: number };
+// type guessedWordType = { guessedWord: string; letterMatchCount: number };
 
-interface AppState {
-  secretWord: string;
-  success: boolean;
-  guessedWords: guessedWordType[];
-}
+// interface AppState {
+//   secretWord: string;
+//   success: boolean;
+//   guessedWords: guessedWordType[];
+// }
 
 /**
  * @function guessWord
@@ -53,7 +54,7 @@ export const guessWord = (guessedWord: string) => {
 };
 
 export const getSecretWord = () => {
-  return (dispatch: any) => {
+  return (dispatch: ThunkDispatch<AppState, undefined, any>) => {
     // make sure to put a return before the axios call in this case so
     // that this function doesn't complete before the asynchroncity is complete
 
