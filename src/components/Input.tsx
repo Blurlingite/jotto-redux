@@ -58,7 +58,7 @@ const mapStateToProps = (
 
   // guessWord: (word: string) => {}
 ) => {
-  return { success, guessWord, store: {} };
+  return { success, guessWord };
 };
 
 export default connect(mapStateToProps, { guessWord })(Input);

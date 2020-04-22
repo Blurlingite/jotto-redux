@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 /**
  * Functional react component for congratulatory message.
@@ -25,10 +25,10 @@ const Congrats = (props: ComponentProps) => {
   }
 };
 
-Congrats.propTypes = {
-  // make it required b/c we should not render this component if we don't know
-  // if word has been guessed correctly.
-  // Note: your tests will check if this prop is there b/c of "isRequired"
-  success: PropTypes.bool.isRequired,
-};
+// Congrats.propTypes = {
+//   // make it required b/c we should not render this component if we don't know
+//   // if word has been guessed correctly.
+//   // Note: your tests will check if this prop is there b/c of "isRequired"
+//   success: PropTypes.bool.isRequired,
+// };
 export default Congrats;

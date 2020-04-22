@@ -1,10 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
 
-interface PropTypes {
+interface ComponentProps {
   guessedWords: { guessedWord: string; letterMatchCount: number }[];
 }
-const GuessedWords = (props: PropTypes) => {
+const GuessedWords = (props: ComponentProps) => {
   let contents;
   if (props.guessedWords.length === 0) {
     contents = (

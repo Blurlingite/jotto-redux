@@ -49,7 +49,7 @@ test("getSecretWord runs on App mount", () => {
   // create a mock function using jest which will tell you when itself is called
   const getSecretWordMock = jest.fn();
 
-  const prop = {
+  const props = {
     getSecretWord: getSecretWordMock,
     success: false,
     guessedWords: [],
@@ -57,7 +57,7 @@ test("getSecretWord runs on App mount", () => {
   // set up app component with getSecretWordMock as the getSecretWord prop
   // the real connected App gets the getSecretWord function from redux's connect() but we need to pass it on as a prop, so we will use the unconnected App
   // we can't use our setup() b/c that uses our connected App
-  const wrapper = shallow(<UnconnectedApp {...prop} />);
+  const wrapper = shallow(<UnconnectedApp {...props} />);
 
   // For typescript, if you don't specify the type of the instance of the shallow wrapper, wrapper.instance(), the methods on the component it is shallowing will be undefined
   // Just mark it as the component like this: as ComponentYouAreShallowing
